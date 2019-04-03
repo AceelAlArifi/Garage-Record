@@ -21,7 +21,7 @@ export class AddCheckIn extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.addBookmark((this.state.title), (this.state.link))
+        this.props.AddCheckIn((this.state.title), (this.state.link))
         this.setState({
             title: '',
             link: ''
@@ -62,4 +62,4 @@ export class AddCheckIn extends Component {
     }
 }
 
-export default AddBookmark
+export default AddCheckIn;

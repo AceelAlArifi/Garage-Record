@@ -7,6 +7,8 @@ import DriverCard from './DriverCard';
 import CarCard from './CarCard';
 import ModalCheckIn from './ModalCheckIn';
 import ModalCheckOut from './ModalCheckOut';
+import Calendarss from './Calendar';
+
 
 
 
@@ -19,16 +21,18 @@ export default class Tabs extends React.Component {
         this.state = {
             activeTab: '1',
             isCheckIn : false,
-            currentDriver:''
+            currentDriver:'',
+            events: [
+                {
+                title: `Testing Date`,
+                start: `2019-04-02`
+            },
+            {
+                title: `Testing Date`,
+                start: `2019-04-06`
+            },
+            ]
         };
-
-        // this.toggle1= this.toggle1.bind(this);
-        // this.state = {
-        //     activeTab: '1',
-        //     isCheckOut: false,
-        //     currentDriver1: ''
-
-        // };
     }
 
 
@@ -45,6 +49,16 @@ export default class Tabs extends React.Component {
         this.setState({ isCheckOut: !this.state.isCheckOut
             , currentDriver: driver
     })
+}
+
+submitCheckIn=(event)=>{
+console.log(event);
+let events = this.state.events
+events.push(event)
+this.setState({events: events})
+
+console.log(this.state);
+
 }
 
 
@@ -69,13 +83,13 @@ export default class Tabs extends React.Component {
         let checkinform = ''
         if(this.state.isCheckIn){
 
-            checkinform = <ModalCheckIn driver={this.state.currentDriver} key={this.state.currentDriver.driver_id} />
+            checkinform = <ModalCheckIn submitCheckIn={this.submitCheckIn} events={this.state.events} driver={this.state.currentDriver} key={this.state.currentDriver.driver_id} />
         }
 
         let checkoutform = ''
         if (this.state.isCheckOut) {
 
-            checkoutform = <ModalCheckOut driver={this.state.currentDriver} key={this.state.currentDriver.driver_id}/>
+            checkoutform = <ModalCheckOut ubmitCheckOut={this.submitCheckOut} events={this.state.events} driver={this.state.currentDriver} key={this.state.currentDriver.driver_id}/>
         }
         
         
@@ -115,6 +129,8 @@ export default class Tabs extends React.Component {
                             <Col sm="12">
                                 <h4 className='title'>GARAGE RECORD</h4>
                             </Col>
+                            <Calendarss events={this.state.events} />
+
                         </Row>
                     </TabPane>
                     <TabPane tabId="2" >

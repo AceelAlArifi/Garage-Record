@@ -25,11 +25,10 @@ class ModalCheckIn extends React.Component {
                     toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>{this.props.driver.driver_name}  fill out your "CHECK IN" form below: </ModalHeader>
                     <ModalBody>
-                        <CheckInForm driver={this.props.driver } key={ this.props.driver.driver_id }/> 
+                        <CheckInForm handleSubmit={this.props.submitCheckIn} driver={this.props.driver } key={ this.props.driver.driver_id }/> 
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>Submit form</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        
                     </ModalFooter>
                 </Modal>
             </div>
@@ -38,3 +37,5 @@ class ModalCheckIn extends React.Component {
 }
 
 export default ModalCheckIn;
+
+//connect onclick 
