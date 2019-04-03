@@ -28,19 +28,27 @@ class Calendarss extends Component {
     }
 
     componentDidMount(){
-
+        this.cal()
         // document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
 
-            let calendar = new Calendar(calendarEl, {
-                plugins: [dayGridPlugin, timeGridPlugin, listPlugin ],
-                defaultView: 'dayGridWeek',
-                events: this.props.events
-            });
-
-            calendar.render();
         // });
 
+    }
+
+    cal = () => {
+        var calendarEl = document.getElementById('calendar');
+
+        let calendar = new Calendar(calendarEl, {
+            plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
+            defaultView: 'timeGridWeek',
+            events: this.props.events
+        });
+
+        calendar.render();
+    }
+
+    componentDidUpdate() {
+        this.cal()
     }
         
 

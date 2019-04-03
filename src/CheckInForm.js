@@ -7,7 +7,7 @@ export default class CheckInForm extends React.Component {
 
 
     state = {
-        carName: '',fuel:'',clean:''
+        carName: '',fuel:'',clean:'', datetime: '', count: 0
     }
 
     getCurrentDate() {
@@ -36,8 +36,24 @@ return date;
     }
 
     handleSubmit=()=>{
-        this.props.handleSubmit(this.state)
+        // const newState = {...this.state}
+        let tempDate = new Date();
+        const start = `${tempDate.getFullYear()}-${tempDate.getMonth()}-${tempDate.getDate()}T${tempDate.getHours()}:${tempDate.getMinutes()}:00Z`
+        const event = { title: `checkin ${this.state.carName}`, start: tempDate}
+        console.log(start);
+        this.state.count+=1
+        console.log(this.state.count);
+        
+        // this.setState({newState})
+        console.log(this.state);
+        console.log(this.props);
+        this.props.handleSubmit(event)
+        this.props.toggle()
+
+        console.log(this.props);
+        
     }
+    
     render() {
       
         const Drivers = DriverLists.map((driver, index) => {

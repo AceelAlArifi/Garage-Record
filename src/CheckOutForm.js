@@ -6,11 +6,53 @@ import CarLists from './CarDB';
 
 export default class CheckOutForm extends React.Component {
 
+    state = {
+        carName: '', fuel: '', clean: '', datetime: '', count: 0
+    }
+
     getCurrentDate() {
         let tempDate = new Date();
         let date = "Date: " + tempDate.getFullYear() + '-' + (tempDate.getMonth() + 1) + '-' + tempDate.getDate() + ' ' + "  Time: " + tempDate.getHours() + ':' + tempDate.getMinutes();
         return date;
     }
+
+    handleChange = (e) => {
+        // console.log("****",e.target.value);
+
+        this.setState({ carName: e.target.value })
+    }
+
+
+    handleFuelChange = (e) => {
+        // console.log("****", e.target.value);
+
+        this.setState({ fuel: e.target.value })
+    }
+
+    handleCleanChange = (e) => {
+        // console.log("****", e.target.value);
+
+        this.setState({ clean: e.target.value })
+    }
+
+    handleSubmit = () => {
+        // const newState = {...this.state}
+        let tempDate = new Date();
+        const end = `${tempDate.getFullYear()}-${tempDate.getMonth()}-${tempDate.getDate()}T${tempDate.getHours()}:${tempDate.getMinutes()}:00Z`
+        // const event = { title: `checkin ${this.state.carName}`, start: tempDate }
+        console.log(end);
+        console.log(this.state.count);
+
+        // this.setState({newState})
+        console.log(this.state);
+        console.log(this.props);
+        // this.props.handleSubmit(event)
+        this.props.toggle()
+
+        console.log(this.props);
+
+    }
+
 
     render() {
 
@@ -34,7 +76,7 @@ export default class CheckOutForm extends React.Component {
 
                 <FormGroup>
                     <Label for="exampleCustomSelect">Car Returned</Label>
-                    <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
+                    <CustomInput onChange={this.handleChange} type="select" id="exampleCustomSelect" name="customSelect">
                         <option value="">Select</option>
                         {Cars}
                     </CustomInput>

@@ -22,17 +22,13 @@ export default class Tabs extends React.Component {
             activeTab: '1',
             isCheckIn : false,
             currentDriver:'',
+            timeZone: 'local',
             events: [
-                {
-                title: `Testing Date`,
-                start: `2019-04-02`
-            },
-            {
-                title: `Testing Date`,
-                start: `2019-04-06`
-            },
-            ]
-        };
+                {start: '2019-04-03T12:30:00Z', end: '2019-04-03T14:30:00Z'}, // will be shifted to local
+                { start: '2018-03-01T12:30:00+XX:XX' }, // already same offset as local, so won't shift
+                { start: '2018-03-01T12:30:00' } // will be parsed as if it were '2018-09-01T12:30:00+XX:XX'
+                ],
+        };  
     }
 
 
