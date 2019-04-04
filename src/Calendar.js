@@ -21,8 +21,7 @@ class Calendarss extends Component {
     pushDriverInform = () => {
         let data = {...this.state} //copy current state
         data.events.push({
-            title: `Testing Date2`,
-            start: `2019-04-07`
+            
         }) //push to array
         this.setState(data) //set state
     }
@@ -37,12 +36,13 @@ class Calendarss extends Component {
 
     cal = () => {
         var calendarEl = document.getElementById('calendar');
-
+calendarEl.innerHTML = ''
         let calendar = new Calendar(calendarEl, {
             plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
             defaultView: 'timeGridWeek',
             events: this.props.events
         });
+        
 
         calendar.render();
     }

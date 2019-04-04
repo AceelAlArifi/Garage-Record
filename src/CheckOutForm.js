@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomInput, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, CustomInput, Form, FormGroup, Label } from 'reactstrap';
 import DriverLists from './DriversDB';
 import CarLists from './CarDB';
 
@@ -39,6 +39,8 @@ export default class CheckOutForm extends React.Component {
         // const newState = {...this.state}
         let tempDate = new Date();
         const end = `${tempDate.getFullYear()}-${tempDate.getMonth()}-${tempDate.getDate()}T${tempDate.getHours()}:${tempDate.getMinutes()}:00Z`
+        const event = { title: `Handeled to: ${this.props.driverName} Car taken: ${this.state.carName}  Fuel status: ${this.state.fuel} Cleanliness: ${this.state.clean} `, start: tempDate }
+        this.state.count += 1
         // const event = { title: `checkin ${this.state.carName}`, start: tempDate }
         console.log(end);
         console.log(this.state.count);
@@ -47,6 +49,7 @@ export default class CheckOutForm extends React.Component {
         console.log(this.state);
         console.log(this.props);
         // this.props.handleSubmit(event)
+        this.props.handleSubmit(event)
         this.props.toggle()
 
         console.log(this.props);
@@ -65,14 +68,6 @@ export default class CheckOutForm extends React.Component {
 
         return (
             <Form>
-
-                {/* <FormGroup>
-                    <Label for="exampleCustomSelect">Driver Name</Label>
-                    <CustomInput type="select" id="exampleCustomSelect" name="customSelect">
-                        <option value="">Select</option>
-                        {Drivers}
-                    </CustomInput>
-                </FormGroup> */}
 
                 <FormGroup>
                     <Label for="exampleCustomSelect">Car Returned</Label>
@@ -116,6 +111,9 @@ export default class CheckOutForm extends React.Component {
 
                     </div>
                 </FormGroup>
+
+                <Button color="primary" onClick={this.handleSubmit} >Submit form</Button>{' '}
+                <Button color="secondary" onSubmit={this.toggle1}>Cancel</Button>
             </Form>
         );
     }

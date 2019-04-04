@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, CustomInput, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, CustomInput, Form, FormGroup, Label } from 'reactstrap';
 import DriverLists from './DriversDB';
 import CarLists from './CarDB';
 
@@ -39,7 +39,7 @@ return date;
         // const newState = {...this.state}
         let tempDate = new Date();
         const start = `${tempDate.getFullYear()}-${tempDate.getMonth()}-${tempDate.getDate()}T${tempDate.getHours()}:${tempDate.getMinutes()}:00Z`
-        const event = { title: `checkin ${this.state.carName}`, start: tempDate}
+        const event = { title: `Car taken: ${this.state.carName} Taken by: ${this.props.driverName} Fuel status: ${this.state.fuel} Cleanliness: ${this.state.clean} `, start: tempDate}
         console.log(start);
         this.state.count+=1
         console.log(this.state.count);
@@ -53,7 +53,7 @@ return date;
         console.log(this.props);
         
     }
-    
+
     render() {
       
         const Drivers = DriverLists.map((driver, index) => {

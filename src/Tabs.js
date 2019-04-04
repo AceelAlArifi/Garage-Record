@@ -21,12 +21,10 @@ export default class Tabs extends React.Component {
         this.state = {
             activeTab: '1',
             isCheckIn : false,
+            isCheckOut: false,
             currentDriver:'',
             timeZone: 'local',
             events: [
-                {start: '2019-04-03T12:30:00Z', end: '2019-04-03T14:30:00Z'}, // will be shifted to local
-                { start: '2018-03-01T12:30:00+XX:XX' }, // already same offset as local, so won't shift
-                { start: '2018-03-01T12:30:00' } // will be parsed as if it were '2018-09-01T12:30:00+XX:XX'
                 ],
         };  
     }
@@ -52,9 +50,15 @@ console.log(event);
 let events = this.state.events
 events.push(event)
 this.setState({events: events})
-
 console.log(this.state);
+}
 
+submitCheckOut = (event) => {
+console.log(event);
+let events = this.state.events
+events.push(event)
+this.setState({ events: events })
+console.log(this.state);
 }
 
 
@@ -83,9 +87,9 @@ console.log(this.state);
         }
 
         let checkoutform = ''
-        if (this.state.isCheckOut) {
+        if(this.state.isCheckOut){
 
-            checkoutform = <ModalCheckOut ubmitCheckOut={this.submitCheckOut} events={this.state.events} driver={this.state.currentDriver} key={this.state.currentDriver.driver_id}/>
+            checkoutform = <ModalCheckOut submitCheckOut={this.submitCheckOut} events={this.state.events} driver={this.state.currentDriver} key={this.state.currentDriver.driver_id} />
         }
         
         
@@ -134,12 +138,12 @@ console.log(this.state);
                             <DriverCard checkIn={this.checkIn} checkOut={this.checkOut} DriverCard={DriverLists}/>
                         </div>
                         {checkinform}
+                        {checkoutform}
                     </TabPane>
                     <TabPane tabId="3">
                         <div>
-                            <CarCard checkOut={this.checkOut} CarCard={CarLists}/>
+                            <CarCard CarCard={CarLists}/>
                         </div>
-                        {checkoutform}
                     </TabPane>
                 </TabContent>
             </div>

@@ -25,7 +25,7 @@ class ModalCheckIn extends React.Component {
                     toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>{this.props.driver.driver_name}  fill out your "CHECK IN" form below: </ModalHeader>
                     <ModalBody>
-                        <CheckInForm toggle={this.toggle} handleSubmit={this.props.submitCheckIn} driver={this.props.driver } key={ this.props.driver.driver_id }/> 
+                        <CheckInForm driverName={this.props.driver.driver_name}toggle={this.toggle} handleSubmit={this.props.submitCheckIn} driver={this.props.driver } key={ this.props.driver.driver_id }/> 
                     </ModalBody>
                     <ModalFooter>
                         

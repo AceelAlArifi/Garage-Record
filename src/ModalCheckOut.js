@@ -25,11 +25,9 @@ class ModalCheckOut extends React.Component {
                     toggle={this.toggle1} className={this.props.className}>
                     <ModalHeader toggle={this.toggle1}>{this.props.driver.driver_name} fill out your "CHECK OUT" form below: </ModalHeader>
                     <ModalBody>
-                        <CheckOutForm driver={this.props.driver} key={this.props.driver.driver_id}/>
+                        <CheckOutForm toggle={this.toggle1} handleSubmit={this.props.submitCheckOut} driver={this.props.driver} key={this.props.driver.driver_id}/>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggle1}>Submit form</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle1}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
